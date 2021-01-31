@@ -1,0 +1,43 @@
+// change the theme
+$theme-colors: (
+  "primary": #6536ff,
+  "danger": #ff4136
+);
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: normal;
+  src: url("assets//fonts/Roboto-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-weight: bold;
+  src: url("assets/fonts/Roboto-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-weight: 900;
+  src: url("assets/fonts/Roboto-Black.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-weight: 600;
+  src: url("assets/fonts/Roboto-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-weight: lighter;
+  src: url("assets/fonts/Roboto-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-weight: 100;
+  src: url("assets/fonts/Roboto-Thin.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Oswald";
+  font-weight: normal;
+  src: url("assets/fonts/Oswald-Regular.ttf") format("truetype");
+}
+
+@import 'bootstrap/scss/bootstrap.scss'
