@@ -42,6 +42,7 @@ export async function getStaticPaths () {
   const pages = res.data
   // Get the paths we want to pre-render based on pages
   const paths = pages.map(page => `/blog/${page.Slug.trim()}`)
+  console.log('blog', paths)
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
   return { paths, fallback: false }

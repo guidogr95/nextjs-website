@@ -7,6 +7,7 @@ import { colors } from 'styles/theme'
 import { host, prodHost } from 'config/constants'
 
 const NavButton = ({ slug, label, submenu }) => {
+    console.log(submenu)
     return (
         <>
             <li className="menuItem-parent" >
@@ -18,19 +19,13 @@ const NavButton = ({ slug, label, submenu }) => {
                 { (submenu && submenu?.length > 0) &&
                     <div className="dropdown" >
                         {submenu.map((item, index) => {
-                            if (!item?.SubMenuItem || !item?.SubMenuItem?.length > 0) return null
+                            if (!item?.SubMenuItem && !item?.SubMenuItem?.length > 0) return null
                             return (
                                 <ul key={index} >
                                     <div className="submenu-label" >{item.Label}</div>
                                     {item.SubMenuItem.map((subItem, i) => {
                                         return (
-                                            <li key={i} >
-                                                <Link href={`/${subItem?.Page?.Slug || '/'}`} >
-                                                    <a>
-                                                        {subItem.Label}
-                                                    </a>
-                                                </Link>
-                                            </li>
+                                            <li key={i} >{subItem.Label}</li>
                                         )
                                     })}
 
@@ -45,9 +40,6 @@ const NavButton = ({ slug, label, submenu }) => {
                     position: relative;
                     display: flex;
                     justify-content: center;
-                }
-                .menuItem-parent ul {
-                    list-style: none;
                 }
                 .menuItem {
                     padding: 13px 20px;
@@ -68,7 +60,7 @@ const NavButton = ({ slug, label, submenu }) => {
                     opacity: 0;
                     position: absolute;
                     overflow: hidden;
-                    padding: 20px 40px;
+                    padding: 20px;
                     top: -20px;
                     border-radius: 2px;
                     transition: all 0.5s;
@@ -77,26 +69,15 @@ const NavButton = ({ slug, label, submenu }) => {
                     display: none;
                     z-index: 2;
                 }
-                .dropdown ul:not(:first-of-type) {
-                    margin-left: 40px;
-                }
-                .dropdown li {
-                    white-space: nowrap;
-                }
-                .dropdown ul li:not(:last-of-type) {
-                    margin-bottom: 10px;
-                }
-                .submenu-label {
-                    font-weight: bold;
-                    letter-spacing: 0.02em;
-                    color: ${colors.lightGray};
-                    margin-bottom: 15px;
-                }
                 .trigger-enter .dropdown {
-                    display: flex;
+                    display: block;
                 }
                 .trigger-enter-active .dropdown {
                     opacity: 1;
+                }
+                .dropdown a {
+                    text-decoration: none;
+                    color: #ffc600;
                 }
             `}</style>
         </>

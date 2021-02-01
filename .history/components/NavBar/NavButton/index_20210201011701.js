@@ -7,6 +7,7 @@ import { colors } from 'styles/theme'
 import { host, prodHost } from 'config/constants'
 
 const NavButton = ({ slug, label, submenu }) => {
+    console.log(submenu)
     return (
         <>
             <li className="menuItem-parent" >
@@ -23,6 +24,7 @@ const NavButton = ({ slug, label, submenu }) => {
                                 <ul key={index} >
                                     <div className="submenu-label" >{item.Label}</div>
                                     {item.SubMenuItem.map((subItem, i) => {
+                                        console.log(subItem)
                                         return (
                                             <li key={i} >
                                                 <Link href={`/${subItem?.Page?.Slug || '/'}`} >
@@ -97,6 +99,10 @@ const NavButton = ({ slug, label, submenu }) => {
                 }
                 .trigger-enter-active .dropdown {
                     opacity: 1;
+                }
+                .dropdown a {
+                    text-decoration: none;
+                    color: #ffc600;
                 }
             `}</style>
         </>

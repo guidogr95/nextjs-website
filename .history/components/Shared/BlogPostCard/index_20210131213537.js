@@ -70,13 +70,13 @@ const BlogPostCard = ({ Title, PublicationDate, Author, Thumbnail, Slug }) => {
                     color: ${colors.lightGray};
                     font-size: 0.9em;
                 }
-                article h5 {
+                article h4 {
                     text-transform: capitalize;
                     color: ${colors.gray};
                     margin: 10px 0 0;
                     line-height: 1.5;
                 }
-                article h5:hover {
+                article h4:hover {
                     text-decoration: underline;
                 }
                 article ._thumbnail img {

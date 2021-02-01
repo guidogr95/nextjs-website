@@ -4,13 +4,13 @@ import NavButton from 'components/NavBar/NavButton'
 const NavMenu = ({ navButtons }) => {
     return (
         <>
-            <ul className="cool" >
+            <ul>
                 {navButtons && navButtons.map((button, index) => (
                     <NavButton
                         key={button?.Page?.Slug || index}
                         slug={button?.Page?.Slug || '/'}
                         label={button.Label}
-                        submenu={button?.NavSubmenu}
+                        submenu={true}
                     />
                 ))}
             </ul>
@@ -18,7 +18,6 @@ const NavMenu = ({ navButtons }) => {
                 ul {
                     display: flex;
                     list-style: none;
-                    height: 100%;
                 }
             `}</style>
         </>

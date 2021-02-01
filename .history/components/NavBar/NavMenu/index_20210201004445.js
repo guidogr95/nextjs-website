@@ -18,7 +18,6 @@ const NavMenu = ({ navButtons }) => {
                 ul {
                     display: flex;
                     list-style: none;
-                    height: 100%;
                 }
             `}</style>
         </>

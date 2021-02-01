@@ -12,24 +12,23 @@ const NavBar = ({ navButtons }) => {
     useEffect(() => {
         const triggers = document.querySelectorAll('.cool > li')
         const background = document.querySelector('.dropdownBackground')
-        const nav = document.querySelector('.navContainer')
+        const nav = document.querySelector('.top')
 
         const handleEnter = (e) => {
             const _this = e.target
-            const dropdown = _this.querySelector('.dropdown')
-            if (!dropdown) return
             _this.classList.add('trigger-enter')
-            setTimeout(() => _this.classList.contains('trigger-enter') && _this.classList.add('trigger-enter-active'), 150)
+            setTimeout(() => _this.classList.add('trigger-enter-active'), 150)
             background.classList.add('open')
 
-            const dropdownCoords = dropdown?.getBoundingClientRect()
+            const dropdown = _this.querySelector('.dropdown')
+            const dropdownCoords = dropdown.getBoundingClientRect()
             const navCoords = nav.getBoundingClientRect()
 
             const coords = {
                 height: dropdownCoords.height,
                 width: dropdownCoords.width,
-                top: dropdownCoords.top - navCoords.top,
-                left: dropdownCoords.left - navCoords.left
+                top: dropdownCoords.top,
+                left: dropdownCoords.left
             }
             background.style.setProperty('width', `${coords.width}px`)
             background.style.setProperty('height', `${coords.height}px`)
@@ -91,11 +90,12 @@ const NavBar = ({ navButtons }) => {
                     position: relative;
                 }
                 nav {
-                    min-height: 101px;
+                    min-height: 90px;
                     max-width: ${desktopMaxWidth};
                     width: 100%;
                     display: flex;
                     align-items: center;
+                    padding: 21px 0px;
                 }
                 .navLogo {
                     width: 250px;

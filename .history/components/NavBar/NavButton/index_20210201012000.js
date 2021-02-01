@@ -23,6 +23,7 @@ const NavButton = ({ slug, label, submenu }) => {
                                 <ul key={index} >
                                     <div className="submenu-label" >{item.Label}</div>
                                     {item.SubMenuItem.map((subItem, i) => {
+                                        console.log(subItem)
                                         return (
                                             <li key={i} >
                                                 <Link href={`/${subItem?.Page?.Slug || '/'}`} >

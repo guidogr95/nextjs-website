@@ -76,7 +76,7 @@ const BlogPostCard = ({ Title, PublicationDate, Author, Thumbnail, Slug }) => {
                     margin: 10px 0 0;
                     line-height: 1.5;
                 }
-                article h5:hover {
+                article h4:hover {
                     text-decoration: underline;
                 }
                 article ._thumbnail img {

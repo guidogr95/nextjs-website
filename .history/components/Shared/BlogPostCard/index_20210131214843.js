@@ -75,6 +75,10 @@ const BlogPostCard = ({ Title, PublicationDate, Author, Thumbnail, Slug }) => {
                     color: ${colors.gray};
                     margin: 10px 0 0;
                     line-height: 1.5;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: normal;
+                    -webkit-line-clamp: 2;
                 }
                 article h5:hover {
                     text-decoration: underline;

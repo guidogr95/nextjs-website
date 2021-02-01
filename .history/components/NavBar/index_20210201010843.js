@@ -91,11 +91,12 @@ const NavBar = ({ navButtons }) => {
                     position: relative;
                 }
                 nav {
-                    min-height: 101px;
+                    min-height: 90px;
                     max-width: ${desktopMaxWidth};
                     width: 100%;
                     display: flex;
                     align-items: center;
+                    padding: 21px 0px;
                 }
                 .navLogo {
                     width: 250px;

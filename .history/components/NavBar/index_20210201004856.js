@@ -19,7 +19,7 @@ const NavBar = ({ navButtons }) => {
             const dropdown = _this.querySelector('.dropdown')
             if (!dropdown) return
             _this.classList.add('trigger-enter')
-            setTimeout(() => _this.classList.contains('trigger-enter') && _this.classList.add('trigger-enter-active'), 150)
+            setTimeout(() => _this.classList.add('trigger-enter-active'), 150)
             background.classList.add('open')
 
             const dropdownCoords = dropdown?.getBoundingClientRect()
@@ -91,11 +91,12 @@ const NavBar = ({ navButtons }) => {
                     position: relative;
                 }
                 nav {
-                    min-height: 101px;
+                    min-height: 90px;
                     max-width: ${desktopMaxWidth};
                     width: 100%;
                     display: flex;
                     align-items: center;
+                    padding: 21px 0px;
                 }
                 .navLogo {
                     width: 250px;
