@@ -5,10 +5,7 @@ import getPaths from 'utils/getPaths'
 // Contants
 import { apiUrl, apiToken } from 'config/constants'
 
-const slug = (props) => {
-
-  const { Body } = props
-
+const slug = ({ Body, Pathname, Blogs }) => {
   return (
     <div>
       {/* Map through page components and add props */}
@@ -16,7 +13,7 @@ const slug = (props) => {
         return (
           renderWithProps({
             componentName: bodyComponent.__component,
-            props: { ...bodyComponent, ...props }
+            props: { ...bodyComponent, Pathname, Blogs }
           })
         )
       })}
@@ -43,7 +40,6 @@ export async function getStaticProps ({ params }) {
   const pageData = await axios.get(`${apiUrl}/pages?Slug=${Slug}`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const navRes = await axios.get(`${apiUrl}/main-menu`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const navButtons = navRes.data.MenuItemMain
-
   const blogPosts = await axios.post(`${apiUrl}/graphql`, {
     query: `{
       blogs {
@@ -70,34 +66,7 @@ export async function getStaticProps ({ params }) {
     { headers: { Authorization: `Bearer ${apiToken}` } }
   )
   const Blogs = blogPosts.data.data.blogs.sort((a, b) => new Date(b.published_at) - new Date(a.published_at))
-
-  const tutorialPosts = await axios.post(`${apiUrl}/graphql`, {
-    query: `{
-      tutorials {
-        Title,
-        Content,
-        Slug,
-        published_at,
-        Publisher {
-          fullname,
-          description,
-          ProfilePicture {
-            url
-          }
-        },
-        Thumbnail {
-          formats
-        },
-        ThumbnailBgColorHex,
-        TitleColor
-      }
-    }`
-    },
-    { headers: { Authorization: `Bearer ${apiToken}` } }
-  )
-  const Tutorials = tutorialPosts.data.data.tutorials.sort((a, b) => new Date(b.published_at) - new Date(a.published_at))
-
-  return { props: { ...pageData.data[0], navButtons, Pathname: Slug, Blogs, Tutorials } }
+  return { props: { ...pageData.data[0], navButtons, Pathname: Slug, Blogs } }
 }
 
 export default slug
