@@ -1,0 +1,28 @@
+// Components
+import Gallery from './Gallery'
+import FeaturedVideo from './FeatueredVideo'
+
+const VideoGallery = ({ ComponentProps }) => {
+
+    const featured = ComponentProps.Video.filter(video => video.featured)
+
+    return (
+        <>
+            <section className="containerSection" >
+                <FeaturedVideo
+                    featured={featured}
+                />
+                <Gallery
+                    Videos={ComponentProps?.Video || []}
+                />
+            </section>
+            <style jsx>{`
+                section {
+                    background: whitesmoke;
+                }
+            `}</style>
+        </>
+    )
+}
+
+export default VideoGallery

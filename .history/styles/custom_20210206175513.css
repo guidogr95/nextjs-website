@@ -1,0 +1,11 @@
+@keyframes loadingAnimation {
+    0% {
+        background-color: #fff;
+    }
+    50% {
+        background-color: #ccc;
+    }
+    100% {
+        background-color: #fff;
+    }
+}
