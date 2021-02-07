@@ -28,7 +28,6 @@ const FeaturedVideo = ({ featured }) => {
                                 <ReactPlayer
                                     url={video?.Link}
                                     light={true}
-                                    controls
                                     width="100%"
                                     height="100%"
                                     playIcon={<PlayIcon className="customPlay" />}
