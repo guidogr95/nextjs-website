@@ -99,7 +99,7 @@ export async function getStaticProps ({ params }) {
     },
     { headers: { Authorization: `Bearer ${apiToken}` } }
   )
-  const Tutorials = tutorialPosts.data.data.tutorials
+  const Tutorials = shuffleArray(tutorialPosts.data.data.tutorials)
 
   Tutorials.forEach(tut => {
     const domContent = new JSDOM(`<div class="domContent" >${tut.Content}</div>`)

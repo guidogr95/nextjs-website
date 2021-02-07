@@ -75,7 +75,8 @@ const ArticleSlider = ({ ComponentProps, Blogs }) => {
                     width: 100%;
                     border-radius: ${borderRadius};
                 }
-                .carousel :global(.carousel-item) {
+                .carousel,
+                .carousel:global(.slide) {
                     height: 450px;
                 }
                 .carousel :global(.carousel-control-prev),

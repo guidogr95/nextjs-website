@@ -16,7 +16,7 @@ const ArticleSlider = ({ ComponentProps, Blogs }) => {
     return (
         <>
             <section className="carousel" aria-label="Gallery">
-                <Carousel className="carousel-wrapper" >
+                <Carousel>
                     { data.map((slide, index) => {
                         const thumbnail = `${apiUrl}${slide.Thumbnail.formats.small.url}`
                         return (
@@ -75,7 +75,8 @@ const ArticleSlider = ({ ComponentProps, Blogs }) => {
                     width: 100%;
                     border-radius: ${borderRadius};
                 }
-                .carousel :global(.carousel-item) {
+                .carousel,
+                .carousel:global(.slide) {
                     height: 450px;
                 }
                 .carousel :global(.carousel-control-prev),
