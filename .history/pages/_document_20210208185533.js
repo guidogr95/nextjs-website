@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
             <link rel="stylesheet" media="print" onLoad="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"/>
             <link rel="stylesheet" media="print" onLoad="this.onload=null;this.removeAttribute('media');" href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"/>
             <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
