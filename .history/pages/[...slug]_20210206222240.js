@@ -3,6 +3,7 @@ import axios from 'axios'
 import renderWithProps from 'utils/renderWithProps'
 import getPaths from 'utils/getPaths'
 import jsdom from 'jsdom'
+import shuffleArray from 'utils/shuffleArray'
 // Contants
 import { apiUrl, apiToken } from 'config/constants'
 
