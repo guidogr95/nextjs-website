@@ -92,7 +92,7 @@ const PublicationHeader = ({ Title, Author, Thumbnail, BackgroundColor, Publicat
                     margin: 0.4rem 0 0;
                 }
                 .blog-author span {
-                    font-weight: 500;
+                    font-weight: 400;
                     color: ${TitleColor || colors.gray};
                     text-transform: capitalize;
                 }

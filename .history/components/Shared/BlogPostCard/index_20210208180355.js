@@ -99,7 +99,7 @@ const BlogPostCard = ({ Title, PublicationDate, Author, Thumbnail, Slug }) => {
                     margin: 3rem 0 0;
                 }
                 article .__card-author span {
-                    font-weight: 500;
+                    font-weight: 400;
                     color: ${colors.gray};
                     text-transform: capitalize;
                 }

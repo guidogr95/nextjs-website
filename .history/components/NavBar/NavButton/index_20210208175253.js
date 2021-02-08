@@ -24,7 +24,8 @@ const NavButton = ({ slug, label, submenu }) => {
                                 <ul key={index} >
                                     <div className="submenu-label" >{item.Label}</div>
                                     {item.SubMenuItem.map((subItem, i) => {
-                                        const fullSlug = Object.keys(subItem?.Page || {}).length === 0 ? '/' : getPaths(subItem.Page, true)
+                                        console.log(subItem)
+                                        const fullSlug = subItem.pagegetPaths(subItem.Page, true)
                                         return (
                                             <li key={i} >
                                                 <Link href={`${fullSlug || '/'}`} >

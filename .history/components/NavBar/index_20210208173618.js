@@ -9,6 +9,8 @@ import { desktopMaxWidth } from 'styles/theme'
 
 const NavBar = ({ navButtons }) => {
 
+    console.log(navButtons)
+
     useEffect(() => {
         const triggers = document.querySelectorAll('.cool > li')
         const background = document.querySelector('.dropdownBackground')

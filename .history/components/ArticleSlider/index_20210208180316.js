@@ -57,7 +57,7 @@ const ArticleSlider = ({ ComponentProps, Blogs }) => {
                     opacity: 0.75;
                     position: absolute;
                     top: -36px;
-                    font-weight: 300;
+                    font-weight: 300px;
                 }
                 .slide-content .slide-text h1 {
                     font-size: 3em;

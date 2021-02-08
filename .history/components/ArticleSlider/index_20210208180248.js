@@ -57,14 +57,13 @@ const ArticleSlider = ({ ComponentProps, Blogs }) => {
                     opacity: 0.75;
                     position: absolute;
                     top: -36px;
-                    font-weight: 300;
                 }
                 .slide-content .slide-text h1 {
                     font-size: 3em;
                     text-transform: capitalize;
                     font-weight: normal;
                     margin: 0;
-                    font-weight: 500;
+                    font-weight: 600;
                 }
                 .slide-content .slide-image {
                     flex: 0 0 100%;
