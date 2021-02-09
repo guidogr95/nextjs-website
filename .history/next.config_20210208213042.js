@@ -19,7 +19,7 @@ module.exports = withLess(
                 'components/**/*'
             ],
                 purgeCss: {
-                whitelist: () => ['player', 'carousel-inner', 'carousel', 'carousel-item', 'carousel-control-prev-icon', 'sr-only', 'carousel-control-next-icon', 'carousel-item-right', 'carousel-item-prev', 'carousel-item-next', 'carousel-item-left', 'btn'],
+                whitelist: () => ['player', 'carousel-inner', 'carousel', 'carousel-item', 'carousel-control-prev-icon', 'sr-only', 'carousel-control-next-icon', 'carousel-item-right', 'carousel-item-prev', 'carousel-item-next', 'carousel-item-left'],
                 whitelistPatterns: () => [/Toastify/, /.*nprogress.*/],
                 rejected: true
             }
