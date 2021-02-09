@@ -25,7 +25,7 @@ const path = require('path')
 // )
 
 // const path = require('path')
-module.exports = withImages({
+module.exports = withImages{
 	trailingSlash: true,
 	webpackDevMiddleware: config => {
 		config.watchOptions = {
@@ -37,4 +37,4 @@ module.exports = withImages({
 	sassOptions: {
 		includePaths: [path.join(__dirname, 'styles')]
 	}
-})
+}
