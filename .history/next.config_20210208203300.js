@@ -9,9 +9,18 @@ module.exports = withLess(
         withPurgeCss({
             lessLoaderOptions: {
               javascriptEnabled: true
-            }
+            },
+            purgeCssPaths: [
+              'pages/**/*',
+              'components/**/*'
+            ],
+            purgeCss: {
+              whitelist: () => ['player'],
+              whitelistPatterns: () => [/Toastify/, /.*nprogress.*/],
+              rejected: true
+            },
+            purgeCssEnabled: ({ dev, isServer }) => true
           })
-    )
   )
 )
 
@@ -28,4 +37,4 @@ module.exports = withLess(
 //   purgeCssEnabled: ({ dev, isServer }) => true, // Enable PurgeCSS for all env
 // });
 // module.exports = config;  // If NextJS >= 9.3
-// module.exports = withCss(config); // If NextJS < 9.3
+// // module.exports = withCss(config); // If NextJS < 9.3
