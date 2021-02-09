@@ -1,11 +1,10 @@
-import dynamic from 'next/dynamic'
 // Utils
 import axios from 'axios'
 // Contants
 import { apiUrl, apiToken } from 'config/constants'
 // Components
-const PublicationHeader = dynamic(() => import('components/Shared/PublicationHeader'))
-const PublicationContent = dynamic(() => import('components/Shared/PublicationContent'))
+import PublicationHeader from 'components/Shared/PublicationHeader'
+import PublicationContent from 'components/Shared/PublicationContent'
 
 const slug = ({ Pathname, Title, Publisher, created_at, Content, Thumbnail, ThumbnailBgColorHex, TitleColor }) => {
   return (

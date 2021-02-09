@@ -1,12 +1,11 @@
-import dynamic from 'next/dynamic'
 // Utils
 import axios from 'axios'
 // Contants
 import { apiUrl, apiToken } from 'config/constants'
 // Components
-const SimpleNav = dynamic(() => import('components/Shared/SimpleNav'))
-const ResourceSignup = dynamic(() => import('components/Resources/ResourceSignup'))
-const ResourceReader = dynamic(() => import('components/Resources/ResourceReader'))
+import SimpleNav from 'components/Shared/SimpleNav'
+import ResourceSignup from 'components/Resources/ResourceSignup'
+import ResourceReader from 'components/Resources/ResourceReader'
 
 const slug = ({ BookCover, Content }) => {
   return (
