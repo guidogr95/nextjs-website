@@ -67,7 +67,6 @@ const NeuSearchBar = ({ placeholder, onSubmit, onChange, formData, onFocus }) =>
                 }
                 label {
                     visibility: hidden;
-                    display: none;
                 }
                 .finder__outer {
                     display: flex;

@@ -26,7 +26,7 @@ const NeuSearchBar = ({ placeholder, onSubmit, onChange, formData, onFocus }) =>
                     <div className="finder__outer">
                         <div className="finder__inner">
                             <div className="finder__icon" />
-                            <label htmlFor="newu" >Search term</label>
+                            {/* <label htmlFor="newu" >Search term</label> */}
                             <input
                                 className="finder__input"
                                 placeholder={placeholder || 'Search...'}
@@ -67,7 +67,6 @@ const NeuSearchBar = ({ placeholder, onSubmit, onChange, formData, onFocus }) =>
                 }
                 label {
                     visibility: hidden;
-                    display: none;
                 }
                 .finder__outer {
                     display: flex;
