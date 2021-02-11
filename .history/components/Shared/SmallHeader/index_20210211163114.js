@@ -8,18 +8,28 @@ import renderIllustration from 'utils/renderIllustration'
 import useOnScreen from 'utils/useOnScreen'
 // Context
 import { useSpringUtils } from 'context/springContext'
+import useProgressiveImage from 'utils/useProgressiveImage'
 
 const SmallHeader = ({ ComponentProps }) => {
+    const { Title, Subtitle, Image, TitleColor, SubtitleColor, Background, HeaderImage } = ComponentProps
+
+    const showImage = !HeaderImage || HeaderImage === 'Custom' ? useProgressiveImage(`${apiUrl}${Image.url}`) : true
 
     const { animations, animated } = useSpringUtils()
     const { enterRight, enterTop } = animations
-
-    const { Title, Subtitle, Image, TitleColor, SubtitleColor, Background, HeaderImage } = ComponentProps
 
     const ref = useRef()
     const [show, setShow] = useState(false)
 
     const onScreen = useOnScreen(ref, '-250px', !show)
+
+    const renderImage = () => {
+        if (!showImage) return
+
+        if (!HeaderImage || HeaderImage === 'Custom') return <animated.img style={enterTop} alt={Title} src={`${apiUrl}${Image.url}`} />
+
+        return renderIllustration(HeaderImage)
+    }
 
     useEffect(() => {
         (!show && onScreen) && setShow(true)
@@ -43,9 +53,7 @@ const SmallHeader = ({ ComponentProps }) => {
                 </aside>
                 {show &&
                     <div className="imgContent" >
-                        {!HeaderImage || HeaderImage === 'Custom'
-                            ? <animated.img style={enterTop} alt={Title} src={`${apiUrl}${Image.url}`} />
-                            : renderIllustration(HeaderImage)}
+                        {renderImage()}
                     </div>
                 }
             </header>

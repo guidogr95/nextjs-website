@@ -52,10 +52,9 @@ const GridItem = React.memo(({ Page, Thumbnail, Title, index }) => {
                     <div className="thumbnail-wrapper" >
                         <Transition
                             items={showImg}
-                            config={{ ...config.wobbly, duration: 700 }}
-                            from={{ transform: 'translate3d(0,40px,0)' }}
+                            from={{ transform: 'translate3d(0,-40px,0)' }}
                             enter={{ transform: 'translate3d(0,0px,0)' }}
-                            leave={{ transform: 'translate3d(0,40px,0)' }}>
+                            leave={{ transform: 'translate3d(0,-40px,0)' }}>
                             {show => show && (props => <Img {...props} />)}
                         </Transition>
                     </div>

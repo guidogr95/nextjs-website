@@ -12,7 +12,7 @@ import { useSpringUtils } from 'context/springContext'
 const SmallHeader = ({ ComponentProps }) => {
 
     const { animations, animated } = useSpringUtils()
-    const { enterRight, enterTop } = animations
+    const { enterRight } = animations
 
     const { Title, Subtitle, Image, TitleColor, SubtitleColor, Background, HeaderImage } = ComponentProps
 
@@ -99,7 +99,7 @@ const SmallHeader = ({ ComponentProps }) => {
                     right: 0;
                     padding-left: 5%;
                 }
-                .imgContent :global(img),
+                .imgContent img,
                 .imgContent :global(svg) {
                     height: 100%;
                 }

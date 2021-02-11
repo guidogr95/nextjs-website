@@ -15,9 +15,9 @@ const GridItem = React.memo(({ Page, Thumbnail, Title, index }) => {
     const ref = useRef()
     const [showImg, setShowImg] = useState(false)
 
-    const { animated, config, Transition } = useSpringUtils()
+    const { animated, animations, Transition } = useSpringUtils()
 
-    const onScreen = useOnScreen(ref, '-250px', !showImg)
+    const onScreen = useOnScreen(ref, '-200px')
 
     // const Slug = getPaths(Page, true)
     const thumbnail = `${apiUrl}${Thumbnail.url}`
@@ -38,6 +38,8 @@ const GridItem = React.memo(({ Page, Thumbnail, Title, index }) => {
 
     const Img = (props) => <animated.img style={props} alt={`${Title} icon`} src={thumbnail} />
 
+    console.log(showImg)
+
     return (
         <>
             <article className={gridLayouts[index + 1]} ref={ref} >
@@ -52,10 +54,9 @@ const GridItem = React.memo(({ Page, Thumbnail, Title, index }) => {
                     <div className="thumbnail-wrapper" >
                         <Transition
                             items={showImg}
-                            config={{ ...config.wobbly, duration: 700 }}
-                            from={{ transform: 'translate3d(0,40px,0)' }}
-                            enter={{ transform: 'translate3d(0,0px,0)' }}
-                            leave={{ transform: 'translate3d(0,40px,0)' }}>
+                            from={{ opacity: 0, transform: 'translateY(-10px)' }}
+                            enter={{ opacity: 1, transform: 'translateY(0px)' }}
+                            leave={{ opacity: 0, transform: 'translateY(-10px)' }}>
                             {show => show && (props => <Img {...props} />)}
                         </Transition>
                     </div>
