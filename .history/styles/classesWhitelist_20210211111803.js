@@ -18,6 +18,7 @@ const whiteList = [
     'collapsing',
     'show',
     'card-body',
+    'btn-secondary',
     'btn-light'
 ]
 
