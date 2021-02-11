@@ -86,7 +86,7 @@ const GridItem = ({ Page, Icon, Thumbnail, Title, index }) => {
                 .c {
                     grid-column: 4;
                     grid-row: span 2;
-                    background: linear-gradient(to bottom, #2B2D42, #2A165980);
+                    background: linear-gradient(to bottom, #2A1659, #2A165980);
                 }
                 .d {
                     grid-column: 1;
@@ -101,7 +101,6 @@ const GridItem = ({ Page, Icon, Thumbnail, Title, index }) => {
                 .f {
                     grid-column: 3 / 5;
                     grid-row: 3;
-                    background: linear-gradient(to bottom, #2B2D42, #2A165980);
                 }
                 .g {
                     grid-column: 2;
@@ -115,13 +114,8 @@ const GridItem = ({ Page, Icon, Thumbnail, Title, index }) => {
                 .c,
                 .d,
                 .e {
-                    flex-direction: column;
-                }
-                .b > div,
-                .c > div,
-                .d > div,
-                .e > div {
                     height: 50%;
+                    flex-direction: column;
                 }
                 .a :global(button) {
                     color: #38AECC;
@@ -130,16 +124,13 @@ const GridItem = ({ Page, Icon, Thumbnail, Title, index }) => {
                     color: #6536FF;
                 }
                 .c :global(button) {
-                    color: #2B2D42;
+                    color: #2A1659;
                 }
                 .d :global(button) {
                     color: #2A1659;
                 }
-                .e :global(button) {
+                .d :global(button) {
                     color: #6536FF;
-                }
-                .f :global(button) {
-                    color: #2B2D42;
                 }
                 /* article:hover .icon {
                     top: 0;

@@ -18,8 +18,7 @@ const whiteList = [
     'collapsing',
     'show',
     'card-body',
-    'btn-secondary',
-    'btn-light'
+    'btn-secondary'
 ]
 
 module.exports = { whiteList }

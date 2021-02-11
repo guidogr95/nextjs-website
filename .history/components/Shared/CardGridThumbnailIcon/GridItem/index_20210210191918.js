@@ -28,7 +28,7 @@ const GridItem = ({ Page, Icon, Thumbnail, Title, index }) => {
                     <div className="body" >
                         <span>{Title}</span>
                         <Button
-                            variant="light"
+                            variant="secondary"
                         >
                             Read More
                         </Button>
@@ -60,9 +60,6 @@ const GridItem = ({ Page, Icon, Thumbnail, Title, index }) => {
                 }
                 .body {
                     padding: 25px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
                 }
                 .body span {
                     color: ${colors.whiteGray};
@@ -71,75 +68,36 @@ const GridItem = ({ Page, Icon, Thumbnail, Title, index }) => {
                     letter-spacing: 0.06em;
                     text-transform: uppercase;
                 }
-                .body :global(button) {
-                    max-width: 150px;
-                }
                 .a {
                     grid-column: 1 / 3;
                     grid-row: 1;
                 }
+                .a > div {
+                    width: 50%;
+                }
                 .b {
                     grid-column: 3;
                     grid-row: span 2;
-                    background: linear-gradient(to bottom, #6536FF, #2A165980);
                 }
                 .c {
                     grid-column: 4;
                     grid-row: span 2;
-                    background: linear-gradient(to bottom, #2B2D42, #2A165980);
                 }
                 .d {
                     grid-column: 1;
                     grid-row: span 2;
-                    background: linear-gradient(to bottom, #2A1659, #2A165980);
                 }
                 .e {
                     grid-column: 2;
                     grid-row: span 2;
-                    background: linear-gradient(to bottom, #6536FF, #2A165980);
                 }
                 .f {
                     grid-column: 3 / 5;
                     grid-row: 3;
-                    background: linear-gradient(to bottom, #2B2D42, #2A165980);
                 }
                 .g {
                     grid-column: 2;
                     grid-row: 2;
-                }
-                .a > div,
-                .f > div {
-                    width: 50%;
-                }
-                .b,
-                .c,
-                .d,
-                .e {
-                    flex-direction: column;
-                }
-                .b > div,
-                .c > div,
-                .d > div,
-                .e > div {
-                    height: 50%;
-                }
-                .a :global(button) {
-                    color: #38AECC;
-                }
-                .b :global(button) {
-                    color: #6536FF;
-                }
-                .c :global(button) {
-                    color: #2B2D42;
-                }
-                .d :global(button) {
-                    color: #2A1659;
-                }
-                .e :global(button) {
-                    color: #6536FF;
-                }
-                .f :global(button) {
-                    color: #2B2D42;
                 }
                 /* article:hover .icon {
                     top: 0;

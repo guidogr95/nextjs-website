@@ -27,10 +27,9 @@ const CardGridThumbnailIcon = ({ ComponentProps }) => {
                     max-width: ${desktopMaxWidth};
                     width: 100%;
                     display: grid;
-                    grid-template-columns: repeat(4, 1fr);
-                    grid-template-rows: repeat(3, 250px);
-                    column-gap: 40px;
-                    row-gap: 40px;
+                    grid-template-columns: repeat(3, 1fr);
+                    column-gap: 70px;
+                    row-gap: 70px;
                     padding: 45px 0;
                 }
             `}</style>

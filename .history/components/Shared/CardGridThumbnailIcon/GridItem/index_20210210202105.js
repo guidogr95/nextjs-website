@@ -135,8 +135,8 @@ const GridItem = ({ Page, Icon, Thumbnail, Title, index }) => {
                 .d :global(button) {
                     color: #2A1659;
                 }
-                .e :global(button) {
-                    color: #6536FF;
+                .d :global(button) {
+                    color: #2A1659;
                 }
                 .f :global(button) {
                     color: #2B2D42;
