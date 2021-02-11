@@ -6,13 +6,11 @@ import { apiUrl } from 'config/constants'
 // Utils
 import renderIllustration from 'utils/renderIllustration'
 import useOnScreen from 'utils/useOnScreen'
-// Context
-import { useSpringUtils } from 'context/springContext'
+import { animated, animations } from 'utils/springHelpers'
+
+const { enterRight } = animations
 
 const SmallHeader = ({ ComponentProps }) => {
-
-    const { animations, animated } = useSpringUtils()
-    const { enterRight } = animations
 
     const { Title, Subtitle, Image, TitleColor, SubtitleColor, Background, HeaderImage } = ComponentProps
 
@@ -83,7 +81,7 @@ const SmallHeader = ({ ComponentProps }) => {
                     display: flex;
                     align-items: center;
                 }
-                main :global(.textContent) {
+                .textContent {
                     padding-left: 5%;
                     max-width: 62%;
                     position: relative;

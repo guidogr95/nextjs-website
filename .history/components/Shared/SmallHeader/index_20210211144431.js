@@ -6,7 +6,6 @@ import { apiUrl } from 'config/constants'
 // Utils
 import renderIllustration from 'utils/renderIllustration'
 import useOnScreen from 'utils/useOnScreen'
-// Context
 import { useSpringUtils } from 'context/springContext'
 
 const SmallHeader = ({ ComponentProps }) => {

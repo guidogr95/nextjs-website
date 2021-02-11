@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 // Theme
 import { borderRadius, colors, fonts } from 'styles/theme'
 // Utils
@@ -10,16 +10,15 @@ import { apiUrl } from 'config/constants'
 import { useSpringUtils } from 'context/springContext'
 import useOnScreen from 'utils/useOnScreen'
 
-const GridItem = React.memo(({ Page, Thumbnail, Title, index }) => {
+const GridItem = ({ Page, Thumbnail, Title, index }) => {
 
     const ref = useRef()
     const [show, setShow] = useState(false)
 
-    const { animated, animations, Transition } = useSpringUtils()
+    const { animated, animations } = useSpringUtils()
+    const { enterTop } = animations
 
-    const onScreen = useOnScreen(ref, '-200px')
-
-    const memoOnScreen = useMemo(() => onScreen, [onScreen])
+    const onScreen = useOnScreen(ref, '-250px')
 
     // const Slug = getPaths(Page, true)
     const thumbnail = `${apiUrl}${Thumbnail.url}`
@@ -36,11 +35,7 @@ const GridItem = React.memo(({ Page, Thumbnail, Title, index }) => {
 
     useEffect(() => {
         (onScreen && !show) && setShow(true)
-    }, [memoOnScreen])
-
-    const Img = (props) => <animated.img style={props} alt={`${Title} icon`} src={thumbnail} />
-
-    console.log(show)
+    }, [onScreen])
 
     return (
         <>
@@ -54,13 +49,13 @@ const GridItem = React.memo(({ Page, Thumbnail, Title, index }) => {
                         </Button>
                     </div>
                     <div className="thumbnail-wrapper" >
-                        <Transition
-                            items={show}
-                            from={{ opacity: 0, transform: 'translateY(-10px)' }}
-                            enter={{ opacity: 1, transform: 'translateY(0px)' }}
-                            leave={{ opacity: 0, transform: 'translateY(-10px)' }}>
-                            {show => show && (props => <Img {...props} />)}
-                        </Transition>
+                        {show &&
+                            <animated.img
+                                alt={`${Title} icon`}
+                                src={thumbnail}
+                                style={enterTop}
+                            />
+                        }
                     </div>
             </article>
             <style jsx>{`
@@ -103,6 +98,6 @@ const GridItem = React.memo(({ Page, Thumbnail, Title, index }) => {
             `}</style>
         </>
     )
-})
+}
 
 export default GridItem

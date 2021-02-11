@@ -6,7 +6,6 @@ import { apiUrl } from 'config/constants'
 // Utils
 import renderIllustration from 'utils/renderIllustration'
 import useOnScreen from 'utils/useOnScreen'
-// Context
 import { useSpringUtils } from 'context/springContext'
 
 const SmallHeader = ({ ComponentProps }) => {
@@ -83,7 +82,7 @@ const SmallHeader = ({ ComponentProps }) => {
                     display: flex;
                     align-items: center;
                 }
-                main :global(.textContent) {
+                .textContent {
                     padding-left: 5%;
                     max-width: 62%;
                     position: relative;

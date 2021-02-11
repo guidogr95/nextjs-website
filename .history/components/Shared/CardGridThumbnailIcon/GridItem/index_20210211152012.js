@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 // Theme
 import { borderRadius, colors, fonts } from 'styles/theme'
 // Utils
@@ -17,9 +17,7 @@ const GridItem = React.memo(({ Page, Thumbnail, Title, index }) => {
 
     const { animated, animations, Transition } = useSpringUtils()
 
-    const onScreen = useOnScreen(ref, '-200px')
-
-    const memoOnScreen = useMemo(() => onScreen, [onScreen])
+    const onScreen = useOnScreen(ref, '-400px')
 
     // const Slug = getPaths(Page, true)
     const thumbnail = `${apiUrl}${Thumbnail.url}`
@@ -36,7 +34,7 @@ const GridItem = React.memo(({ Page, Thumbnail, Title, index }) => {
 
     useEffect(() => {
         (onScreen && !show) && setShow(true)
-    }, [memoOnScreen])
+    }, [onScreen])
 
     const Img = (props) => <animated.img style={props} alt={`${Title} icon`} src={thumbnail} />
 

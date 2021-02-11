@@ -3,13 +3,11 @@ import { useRef, useState } from 'react'
 import NeuSearchBar from 'components/Shared/NeuSearchBar'
 import TutorialSearchResult from './TutorialSearchResult'
 // Utils
-import { useSpringUtils } from 'context/springContext'
+import { Transition } from 'context/springContext'
 import useOnClickOutside from 'utils/useOnClickOutside'
 import { colors } from 'styles/theme'
 
 const TutorialSearchBar = ({ Tutorials }) => {
-
-    const { Transition } = useSpringUtils()
 
     const resultsRef = useRef(null)
     useOnClickOutside(resultsRef, () => resultsActive && setResultsActive(false))

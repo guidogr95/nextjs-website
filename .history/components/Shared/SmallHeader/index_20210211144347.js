@@ -6,7 +6,6 @@ import { apiUrl } from 'config/constants'
 // Utils
 import renderIllustration from 'utils/renderIllustration'
 import useOnScreen from 'utils/useOnScreen'
-// Context
 import { useSpringUtils } from 'context/springContext'
 
 const SmallHeader = ({ ComponentProps }) => {
@@ -39,15 +38,15 @@ const SmallHeader = ({ ComponentProps }) => {
                                 <h4>{Subtitle}</h4>
                             </animated.div>
                         }
+                        {show &&
+                            <div className="imgContent" >
+                                {!HeaderImage || HeaderImage === 'Custom'
+                                    ? <img alt={Title} src={`${apiUrl}${Image.url}`} />
+                                    : renderIllustration(HeaderImage)}
+                            </div>
+                        }
                     </main>
                 </aside>
-                {show &&
-                    <div className="imgContent" >
-                        {!HeaderImage || HeaderImage === 'Custom'
-                            ? <img alt={Title} src={`${apiUrl}${Image.url}`} />
-                            : renderIllustration(HeaderImage)}
-                    </div>
-                }
             </header>
             <style jsx>{`
                 header {
@@ -83,7 +82,7 @@ const SmallHeader = ({ ComponentProps }) => {
                     display: flex;
                     align-items: center;
                 }
-                main :global(.textContent) {
+                .textContent {
                     padding-left: 5%;
                     max-width: 62%;
                     position: relative;

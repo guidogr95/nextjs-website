@@ -33,7 +33,7 @@ const SmallHeader = ({ ComponentProps }) => {
                         {show &&
                             <animated.div
                                 className="textContent"
-                                style={enterRight}
+                                style={enterRight(600)}
                             >
                                 <h1>{Title}</h1>
                                 <h4>{Subtitle}</h4>

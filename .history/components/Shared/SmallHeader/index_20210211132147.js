@@ -3,16 +3,11 @@ import { useEffect, useRef, useState } from 'react'
 import { colors, desktopMaxWidth } from 'styles/theme'
 // Assets
 import { apiUrl } from 'config/constants'
-// Utils
+// Utilsd
 import renderIllustration from 'utils/renderIllustration'
 import useOnScreen from 'utils/useOnScreen'
-// Context
-import { useSpringUtils } from 'context/springContext'
 
 const SmallHeader = ({ ComponentProps }) => {
-
-    const { animations, animated } = useSpringUtils()
-    const { enterRight } = animations
 
     const { Title, Subtitle, Image, TitleColor, SubtitleColor, Background, HeaderImage } = ComponentProps
 
@@ -31,21 +26,16 @@ const SmallHeader = ({ ComponentProps }) => {
                 <aside>
                     <main>
                         {show &&
-                            <animated.div
-                                className="textContent"
-                                style={enterRight}
-                            >
+                            <div className="textContent" >
                                 <h1>{Title}</h1>
                                 <h4>{Subtitle}</h4>
-                            </animated.div>
+                            </div>
                         }
                     </main>
                 </aside>
                 {show &&
                     <div className="imgContent" >
-                        {!HeaderImage || HeaderImage === 'Custom'
-                            ? <img alt={Title} src={`${apiUrl}${Image.url}`} />
-                            : renderIllustration(HeaderImage)}
+                        {!HeaderImage || HeaderImage === 'Custom' ? <img alt={Title} src={`${apiUrl}${Image.url}`} /> : renderIllustration(HeaderImage)}
                     </div>
                 }
             </header>
@@ -83,7 +73,7 @@ const SmallHeader = ({ ComponentProps }) => {
                     display: flex;
                     align-items: center;
                 }
-                main :global(.textContent) {
+                .textContent {
                     padding-left: 5%;
                     max-width: 62%;
                     position: relative;
