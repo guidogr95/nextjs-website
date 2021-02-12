@@ -56,7 +56,7 @@ const NavBar = ({ navButtons }) => {
             <div className="navContainer" >
                 <div className="dropdownBackground" />
                 <nav className="top" >
-                    <Link href="/" >
+                    <Link prefetch={false} href="/" >
                         <a className="logoLink" >
                             <img className="navLogo" alt="standard-logo-horizontal" src={Logo} />
                         </a>

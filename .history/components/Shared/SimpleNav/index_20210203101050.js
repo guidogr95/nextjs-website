@@ -7,7 +7,7 @@ const SimpleNav = () => {
         <>
             <header>
                 <nav>
-                    <Link prefetch={false} href="/" >
+                    <Link href="/" >
                         <a className="logoLink" >
                             <img className="navLogo" alt="standard-logo-horizontal" src={Logo} />
                         </a>

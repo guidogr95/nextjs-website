@@ -27,7 +27,7 @@ const NavButton = ({ slug, label, submenu }) => {
                                         const fullSlug = Object.keys(subItem?.Page || {}).length === 0 ? '/' : getPaths(subItem.Page, true)
                                         return (
                                             <li key={i} >
-                                                <Link prefetch={false} href={`${fullSlug || '/'}`} >
+                                                <Link href={`${fullSlug || '/'}`} >
                                                     <a>
                                                         {subItem.Label}
                                                     </a>

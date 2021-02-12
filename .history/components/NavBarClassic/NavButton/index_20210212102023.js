@@ -11,7 +11,7 @@ const NavButton = ({ slug, label, submenu }) => {
     return (
         <>
             <li className="menuItem-parent" >
-                <Link prefetch={false} href={process.env.NODE_ENV === 'development' ? `${host}${slug}` : `${prodHost}${slug}`}>
+                <Link href={process.env.NODE_ENV === 'development' ? `${host}${slug}` : `${prodHost}${slug}`}>
                     <a className="menuItem main capitalize" >
                         <span>{label}</span>{(submenu && submenu?.length > 0) && <FiChevronDown />}
                     </a>
@@ -27,7 +27,7 @@ const NavButton = ({ slug, label, submenu }) => {
                                         const fullSlug = Object.keys(subItem?.Page || {}).length === 0 ? '/' : getPaths(subItem.Page, true)
                                         return (
                                             <li key={i} >
-                                                <Link prefetch={false} href={`${fullSlug || '/'}`} >
+                                                <Link href={`${fullSlug || '/'}`} >
                                                     <a>
                                                         {subItem.Label}
                                                     </a>

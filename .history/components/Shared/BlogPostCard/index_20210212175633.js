@@ -24,7 +24,7 @@ const BlogPostCard = ({ Title, PublicationDate, Author, Thumbnail, Slug }) => {
                         <time className="__post-time" >
                             {new Date(PublicationDate).toDateString()}
                         </time>
-                        <Link prefetch={false} href={`blog/${Slug}`}>
+                        <Link href={`blog/${Slug}`}>
                             <a>
                                 <h5>{Title}</h5>
                             </a>

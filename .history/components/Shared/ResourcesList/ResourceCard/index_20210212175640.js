@@ -30,7 +30,7 @@ const ResourceCard = ({ resourceData }) => {
                         <span>
                             FREE
                         </span>
-                        <Link prefetch={false} href={`/white-paper/${Slug}`}>
+                        <Link href={`/white-paper/${Slug}`}>
                             <a>
                                 DOWNLOAD <FiChevronRight />
                             </a>

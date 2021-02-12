@@ -1,38 +1,41 @@
 // Utils
 import Link from 'next/link'
+import randomIntFromInterval from 'utils/randomIntFromInterval'
 import useProgressiveImage from 'utils/useProgressiveImage'
 // Theme
 import { borderRadius, colors } from 'styles/theme'
-// Constants
-import { apiUrl } from 'config/constants'
 // Assets
 import { FiChevronRight } from 'react-icons/fi'
 
-const ResourceCard = ({ resourceData }) => {
-    const thumbnail = `${apiUrl}${resourceData.Resource.Thumbnail.url}`
-    const { Title, Slug } = resourceData.Resource
+const TutorialPostCard = ({ Title, Thumbnail, Slug, Content }) => {
 
-    const loaded = useProgressiveImage(thumbnail)
+    const loaded = useProgressiveImage(Thumbnail)
+
+    const cutContent = (content) => {
+        const minLength = 120
+        const maxLength = 240
+
+        return `${content.slice(0, randomIntFromInterval(minLength, maxLength))} [...]`
+    }
 
     return (
         <>
             <article>
-                <Link prefetch={false} href={`/white-paper/${Slug}`}>
+                <Link prefetch={false} href={`/resources/tutorials/${Slug}`}>
                     <a className="cover-link" >
+                        <span>{Title}</span>
                     </a>
                 </Link>
                 <div className={`thumbnail ${!loaded ? 'loading' : ''}`} />
                 <div className="body" >
                     <div className="_description" >
-                        <h4>{Title}</h4>
+                        <span>{Title}</span>
+                        {cutContent(Content)}
                     </div>
                     <div className="_footer" >
-                        <span>
-                            FREE
-                        </span>
-                        <Link prefetch={false} href={`/white-paper/${Slug}`}>
+                        <Link href={`/resources/tutorials/${Slug}`}>
                             <a>
-                                DOWNLOAD <FiChevronRight />
+                                Read More <FiChevronRight />
                             </a>
                         </Link>
                     </div>
@@ -45,30 +48,31 @@ const ResourceCard = ({ resourceData }) => {
                     justify-content: space-between;
                     height: 100%;
                 }
-                .thumbnail.loading {
-                    animation: loadingAnimation 1s infinite;
-                }
                 .thumbnail {
                     width: 100%;
-                    height: 280px;
-                    min-height: 280px;
-                    background: url(${thumbnail});
+                    height: 210px;
+                    min-height: 210px;
+                    background: url(${Thumbnail});
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;
+                }
+                .thumbnail.loading {
+                    animation: loadingAnimation 1s infinite;
                 }
                 ._description {
                     padding: 30px;
                     min-height: 90px;
                     display: flex;
-                    align-items: center;
+                    flex-direction: column;
                 }
-                ._description h4 {
+                ._description span {
                     text-transform: capitalize;
                     color: ${colors.lightGray};
                     line-height: 1.4;
-                    margin-bottom: 0;
+                    margin-bottom: 20px;
                     font-weight: 600;
+                    font-size: 1.4em;
                 }
                 ._footer {
                     padding: 30px;
@@ -102,11 +106,12 @@ const ResourceCard = ({ resourceData }) => {
                     overflow: hidden;
                     display: flex;
                     flex-direction: column;
+                    border: 1px solid transparent;
                     position: relative;
                 }
                 article:hover {
-                    transform: translateY(-10px);
-                    box-shadow: 0px 7px 30px rgba(70, 70, 70, 0.3);
+                    border: 1px solid ${colors.day}aa;
+                    box-shadow: 0px 0px 0px rgba(70, 70, 70, 0.);
                 }
                 article :global(.cover-link) {
                     position: absolute;
@@ -114,6 +119,9 @@ const ResourceCard = ({ resourceData }) => {
                     bottom: 85px;
                     left: 0;
                     right: 0;
+                }
+                article :global(.cover-link span) {
+                    visibility: hidden;
                 }
                 @keyframes loadingAnimation {
                     0% {
@@ -131,4 +139,4 @@ const ResourceCard = ({ resourceData }) => {
     )
 }
 
-export default ResourceCard
+export default TutorialPostCard
