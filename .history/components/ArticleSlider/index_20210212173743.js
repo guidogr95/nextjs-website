@@ -70,10 +70,6 @@ const ArticleSlider = ({ ComponentProps, Blogs }) => {
                     margin: 50px auto;
                     max-width: 562px;
                     width: 100%;
-                    background-size: cover;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    border-radius: ${borderRadius};
                 }
                 .slide-content .slide-image img {
                     width: 100%;
