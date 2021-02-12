@@ -59,23 +59,24 @@ export async function getStaticProps ({ params }) {
   console.log('ran 2')
 
   let blogs = await memoryCache.get('blogs')
+  console.log('blogs', blogs)
   if (!blogs) {
     const blogsData = await axios.get(`${apiUrl}/blogs`, { headers: { Authorization: `Bearer ${apiToken}` } })
     await memoryCache.set('blogs', blogsData.data, () => {
+      console.log('assigned data', blogsData.data)
       blogs = blogsData.data
     })
   }
 
-  const navRes = await axios.get(`${apiUrl}/main-menu`, { headers: { Authorization: `Bearer ${apiToken}` } })
-  const navButtons = navRes.data.MenuItemMain
-  // if (!navButtons) {
-  //   console.log('navRes', navRes.data.MenuItemMain)
-  //   await memoryCache.set('navButtons', navRes.data.MenuItemMain, () => {
-  //     navButtons = navRes.data.MenuItemMain
-  //   })
-  // }
+  let navButtons = await memoryCache.get('navButtons')
+  if (!navButtons) {
+    const navRes = await axios.get(`${apiUrl}/main-menu`, { headers: { Authorization: `Bearer ${apiToken}` } })
+    await memoryCache.set('navButtons', navRes.data.MenuItemMain, () => {
+      navButtons = navRes.data.MenuItemMain
+    })
+  }
 
-  // console.log('navButtons', navButtons)
+  console.log('navButtons', navButtons)
   return {
     props: {
       ...blogs.find(blog => blog.Slug === params.slug),

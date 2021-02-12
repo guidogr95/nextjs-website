@@ -44,7 +44,7 @@ export async function getStaticPaths () {
   // Call an external API endpoint to get pages
   const pageLimit = await axios.get(`${apiUrl}/blogs/count`, { headers: { Authorization: `Bearer ${apiToken}` } })
   // await memoryCache.set('pageLimit', pageLimit.data)
-  const res = await axios.get(`${apiUrl}/blogs?_limit=${5}`, { headers: { Authorization: `Bearer ${apiToken}` } })
+  const res = await axios.get(`${apiUrl}/blogs?_limit=${20}`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const pages = res.data
   // Get the paths we want tos pre-render based on pages
   const paths = pages.map(page => `/blog/${page.Slug.trim()}`)
@@ -56,6 +56,8 @@ export async function getStaticPaths () {
 
 // This also gets called at build time
 export async function getStaticProps ({ params }) {
+  const pageL = await memoryCache.get('pageLimit')
+  console.log('pageL', pageL)
   console.log('ran 2')
 
   let blogs = await memoryCache.get('blogs')
@@ -66,16 +68,13 @@ export async function getStaticProps ({ params }) {
     })
   }
 
-  const navRes = await axios.get(`${apiUrl}/main-menu`, { headers: { Authorization: `Bearer ${apiToken}` } })
-  const navButtons = navRes.data.MenuItemMain
-  // if (!navButtons) {
-  //   console.log('navRes', navRes.data.MenuItemMain)
-  //   await memoryCache.set('navButtons', navRes.data.MenuItemMain, () => {
-  //     navButtons = navRes.data.MenuItemMain
-  //   })
-  // }
-
-  // console.log('navButtons', navButtons)
+  let navButtons = await memoryCache.get('navButtons')
+  if (!navButtons) {
+    const navRes = await axios.get(`${apiUrl}/main-menu`, { headers: { Authorization: `Bearer ${apiToken}` } })
+    await memoryCache.set('navButtons', navRes.data.MenuItemMain, () => {
+      navButtons = navRes.data.MenuItemMain
+    })
+  }
   return {
     props: {
       ...blogs.find(blog => blog.Slug === params.slug),

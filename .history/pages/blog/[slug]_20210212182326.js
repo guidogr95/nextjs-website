@@ -43,10 +43,12 @@ const slug = ({ Pathname, Title, Publisher, created_at, Content, Thumbnail, Thum
 export async function getStaticPaths () {
   // Call an external API endpoint to get pages
   const pageLimit = await axios.get(`${apiUrl}/blogs/count`, { headers: { Authorization: `Bearer ${apiToken}` } })
-  // await memoryCache.set('pageLimit', pageLimit.data)
-  const res = await axios.get(`${apiUrl}/blogs?_limit=${5}`, { headers: { Authorization: `Bearer ${apiToken}` } })
+  await memoryCache.set('pageLimit', pageLimit)
+  const res = await axios.get(`${apiUrl}/blogs?_limit=${10}`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const pages = res.data
   // Get the paths we want tos pre-render based on pages
+  const pageL = await memoryCache.get('pageLimit')
+  console.log('pageL', pageL.data)
   const paths = pages.map(page => `/blog/${page.Slug.trim()}`)
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
@@ -56,29 +58,12 @@ export async function getStaticPaths () {
 
 // This also gets called at build time
 export async function getStaticProps ({ params }) {
-  console.log('ran 2')
-
-  let blogs = await memoryCache.get('blogs')
-  if (!blogs) {
-    const blogsData = await axios.get(`${apiUrl}/blogs`, { headers: { Authorization: `Bearer ${apiToken}` } })
-    await memoryCache.set('blogs', blogsData.data, () => {
-      blogs = blogsData.data
-    })
-  }
-
+  const pageData = await axios.get(`${apiUrl}/blogs?Slug=${params.slug}`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const navRes = await axios.get(`${apiUrl}/main-menu`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const navButtons = navRes.data.MenuItemMain
-  // if (!navButtons) {
-  //   console.log('navRes', navRes.data.MenuItemMain)
-  //   await memoryCache.set('navButtons', navRes.data.MenuItemMain, () => {
-  //     navButtons = navRes.data.MenuItemMain
-  //   })
-  // }
-
-  // console.log('navButtons', navButtons)
   return {
     props: {
-      ...blogs.find(blog => blog.Slug === params.slug),
+      ...pageData.data[0],
       navButtons,
       Pathname: params.slug
     },

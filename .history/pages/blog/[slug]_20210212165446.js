@@ -39,7 +39,7 @@ const slug = ({ Pathname, Title, Publisher, created_at, Content, Thumbnail, Thum
 // This function gets called at build time
 export async function getStaticPaths () {
   // Call an external API endpoint to get pages
-  const pageLimit = await  axios.get(`${apiUrl}/blogs/count`, { headers: { Authorization: `Bearer ${apiToken}` } })
+  const pageLimit = await axios.get(`${apiUrl}/blogs/count`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const res = await axios.get(`${apiUrl}/blogs?_limit=${pageLimit.data}`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const pages = res.data
   // Get the paths we want to pre-render based on pages
