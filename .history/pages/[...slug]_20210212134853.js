@@ -51,11 +51,9 @@ export async function getStaticProps ({ params }) {
   const navRes = await axios.get(`${apiUrl}/main-menu`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const navButtons = navRes.data.MenuItemMain
 
-  const blogLimit = await axios.get(`${apiUrl}/blogs/count`, { headers: { Authorization: `Bearer ${apiToken}` } })
-
   const blogPosts = await axios.post(`${apiUrl}/graphql`, {
     query: `{
-      blogs(limit: ${blogLimit.data}) {
+      blogs {
         Title,
         Content,
         Slug,
