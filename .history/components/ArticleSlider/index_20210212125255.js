@@ -47,7 +47,7 @@ const ArticleSlider = ({ ComponentProps, Blogs }) => {
                     padding-left: 5%;
                     max-width: 62%;
                     position: relative;
-                    width: 100%;
+                    width: 100%
                 }
                 .slide-content .slide-text span {
                     margin: 10px 0;

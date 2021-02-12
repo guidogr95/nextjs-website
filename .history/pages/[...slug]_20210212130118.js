@@ -1,12 +1,10 @@
 // Utils
+import axios from 'axios'
 import renderWithProps from 'utils/renderWithProps'
 import getPaths from 'utils/getPaths'
 import jsdom from 'jsdom'
-import { axios, dynamic } from 'utils/imports'
 // Contants
 import { apiUrl, apiToken } from 'config/constants'
-// Components
-const FallbackController = dynamic(() => import('components/Shared/FallbackController'))
 
 const { JSDOM } = jsdom
 
@@ -17,16 +15,14 @@ const slug = (props) => {
   return (
     <div>
       {/* Map through page components and add props */}
-      <FallbackController>
-        {Body && Body.map(bodyComponent => {
-          return (
-            renderWithProps({
-              componentName: bodyComponent.__component,
-              props: { ComponentProps: { ...bodyComponent }, ...props }
-            })
-          )
-        })}
-      </FallbackController>
+      {Body && Body.map(bodyComponent => {
+        return (
+          renderWithProps({
+            componentName: bodyComponent.__component,
+            props: { ComponentProps: { ...bodyComponent }, ...props }
+          })
+        )
+      })}
     </div>
   )
 }
@@ -40,7 +36,7 @@ export async function getStaticPaths () {
   const paths = getPaths(pages).filter(page => page !== '/home')
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
-  return { paths, fallback: true }
+  return { paths, fallback: false }
 }
 
 // This also gets called at build time. Receives the paths from the above functions and passes the information down to the page

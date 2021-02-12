@@ -55,7 +55,7 @@ export async function getStaticProps () {
   const Blogs = blogPosts.data.data.blogs.sort((a, b) => new Date(b.published_at) - new Date(a.published_at))
 
   // Pass post data to the page via props
-  return { props: { ...page, navButtons, Blogs }, revalidate: 10 }
+  return { props: { ...page, navButtons, Blogs } }
 }
 
 export default index

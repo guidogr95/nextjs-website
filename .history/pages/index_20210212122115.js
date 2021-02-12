@@ -3,8 +3,10 @@ import axios from 'axios'
 import renderWithProps from 'utils/renderWithProps'
 // Contants
 import { apiUrl, apiToken } from 'config/constants'
+import FallbackScreen from 'components/Shared/FallbackScreen'
 
 const index = ({ Body, Pathname, Blogs }) => {
+  return <FallbackScreen />
   return (
     <div>
       {Body && Body.map(bodyComponent => {
@@ -55,7 +57,7 @@ export async function getStaticProps () {
   const Blogs = blogPosts.data.data.blogs.sort((a, b) => new Date(b.published_at) - new Date(a.published_at))
 
   // Pass post data to the page via props
-  return { props: { ...page, navButtons, Blogs }, revalidate: 10 }
+  return { props: { ...page, navButtons, Blogs } }
 }
 
 export default index

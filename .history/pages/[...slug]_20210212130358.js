@@ -2,11 +2,12 @@
 import renderWithProps from 'utils/renderWithProps'
 import getPaths from 'utils/getPaths'
 import jsdom from 'jsdom'
+import { useRouter } from 'next/router'
 import { axios, dynamic } from 'utils/imports'
 // Contants
 import { apiUrl, apiToken } from 'config/constants'
 // Components
-const FallbackController = dynamic(() => import('components/Shared/FallbackController'))
+const FallbackScreen = dynamic(() => import('components/Shared/FallbackScreen'))
 
 const { JSDOM } = jsdom
 
@@ -14,19 +15,25 @@ const slug = (props) => {
 
   const { Body } = props
 
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return (
+      <FallbackScreen />
+    )
+  }
+
   return (
     <div>
       {/* Map through page components and add props */}
-      <FallbackController>
-        {Body && Body.map(bodyComponent => {
-          return (
-            renderWithProps({
-              componentName: bodyComponent.__component,
-              props: { ComponentProps: { ...bodyComponent }, ...props }
-            })
-          )
-        })}
-      </FallbackController>
+      {Body && Body.map(bodyComponent => {
+        return (
+          renderWithProps({
+            componentName: bodyComponent.__component,
+            props: { ComponentProps: { ...bodyComponent }, ...props }
+          })
+        )
+      })}
     </div>
   )
 }

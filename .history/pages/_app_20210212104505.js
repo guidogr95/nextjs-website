@@ -12,12 +12,12 @@ function MyApp ({ Component, pageProps }) {
   const { navButtons, PageSEO } = pageProps
   return (
     <>
-      {PageSEO &&
+      {/* {PageSEO &&
         <SEOHead {...PageSEO} />
-      }
+      } */}
       <AppLayout>
         <ProvideSpring>
-          { navButtons && <NavBarClassic navButtons={navButtons} /> }
+          {/* { navButtons && <NavBarClassic navButtons={navButtons} /> } */}
           <Component {...pageProps} />
         </ProvideSpring>
       </AppLayout>

@@ -1,5 +1,6 @@
+import dynamic from 'next/dynamic'
 // Utils
-import { axios, dynamic } from 'utils/imports'
+import axios from 'axios'
 // Contants
 import { apiUrl, apiToken } from 'config/constants'
 // Components
@@ -7,7 +8,6 @@ const PublicationHeader = dynamic(() => import('components/Shared/PublicationHea
 const PublicationContent = dynamic(() => import('components/Shared/PublicationContent'))
 
 const slug = ({ Pathname, Title, Publisher, created_at, Content, Thumbnail, ThumbnailBgColorHex, TitleColor }) => {
-
   return (
     <div>
         <PublicationHeader
@@ -39,14 +39,13 @@ const slug = ({ Pathname, Title, Publisher, created_at, Content, Thumbnail, Thum
 // This function gets called at build time
 export async function getStaticPaths () {
   // Call an external API endpoint to get pages
-  const res = await axios.get(`${apiUrl}/blogs?_limit=500`, { headers: { Authorization: `Bearer ${apiToken}` } })
+  const res = await axios.get(`${apiUrl}/blogs`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const pages = res.data
   // Get the paths we want to pre-render based on pages
   const paths = pages.map(page => `/blog/${page.Slug.trim()}`)
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
-  // { fallback: true } means it will generate static files that were not generated at build time on demand
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 // This also gets called at build time
@@ -54,14 +53,7 @@ export async function getStaticProps ({ params }) {
   const pageData = await axios.get(`${apiUrl}/blogs?Slug=${params.slug}`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const navRes = await axios.get(`${apiUrl}/main-menu`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const navButtons = navRes.data.MenuItemMain
-  return {
-    props: {
-      ...pageData.data[0],
-      navButtons,
-      Pathname: params.slug
-    },
-    revalidate: 10
-  }
+  return { props: { ...pageData.data[0], navButtons, Pathname: params.slug } }
 }
 
 export default slug

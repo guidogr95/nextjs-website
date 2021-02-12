@@ -7,18 +7,21 @@ import NavBarClassic from 'components/NavBarClassic'
 import SEOHead from 'components/Shared/SEOHead'
 // Context
 import { ProvideSpring } from 'context/springContext'
+import { ProvideSSG } from 'context/SSGContext'
 
 function MyApp ({ Component, pageProps }) {
   const { navButtons, PageSEO } = pageProps
   return (
     <>
-      {PageSEO &&
+      {/* {PageSEO &&
         <SEOHead {...PageSEO} />
-      }
+      } */}
       <AppLayout>
         <ProvideSpring>
-          { navButtons && <NavBarClassic navButtons={navButtons} /> }
-          <Component {...pageProps} />
+          <ProvideSSG>
+            {/* { navButtons && <NavBarClassic navButtons={navButtons} /> } */}
+            <Component {...pageProps} />
+          </ProvideSSG>
         </ProvideSpring>
       </AppLayout>
     </>
