@@ -6,7 +6,6 @@ import { apiUrl, apiToken } from 'config/constants'
 // Components
 const PublicationHeader = dynamic(() => import('components/Shared/PublicationHeader'))
 const PublicationContent = dynamic(() => import('components/Shared/PublicationContent'))
-const FallbackController = dynamic(() => import('components/Shared/FallbackController'))
 
 const memoryCache = cacheManager.caching({ store: 'memory', max: 10000, ttl: 300 })
 
@@ -14,11 +13,10 @@ const slug = ({ Pathname, Title, Publisher, created_at, Content, Thumbnail, Thum
 
   return (
     <div>
-      <FallbackController>
         <PublicationHeader
           Title={Title}
           Author={Publisher}
-          Thumbnail={`${apiUrl}${Thumbnail?.formats.small.url}`}
+          Thumbnail={`${apiUrl}${Thumbnail.formats.small.url}`}
           BackgroundColor={ThumbnailBgColorHex}
           PublicationDate={created_at}
           TitleColor={TitleColor}
@@ -29,7 +27,6 @@ const slug = ({ Pathname, Title, Publisher, created_at, Content, Thumbnail, Thum
             Author={Publisher}
           />
         }
-      </FallbackController>
       {/* {Body && Body.map(bodyComponent => {
         return (
           renderWithProps({
@@ -47,7 +44,7 @@ export async function getStaticPaths () {
   // Call an external API endpoint to get pages
   const pageLimit = await axios.get(`${apiUrl}/blogs/count`, { headers: { Authorization: `Bearer ${apiToken}` } })
   // await memoryCache.set('pageLimit', pageLimit.data)
-  const res = await axios.get(`${apiUrl}/blogs?_limit=${pageLimit.data}`, { headers: { Authorization: `Bearer ${apiToken}` } })
+  const res = await axios.get(`${apiUrl}/blogs?_limit=${5}`, { headers: { Authorization: `Bearer ${apiToken}` } })
   const pages = res.data
   // Get the paths we want tos pre-render based on pages
   const paths = pages.map(page => `/blog/${page.Slug.trim()}`)
@@ -59,21 +56,31 @@ export async function getStaticPaths () {
 
 // This also gets called at build time
 export async function getStaticProps ({ params }) {
+  console.log('ran 2')
 
   let blogs = await memoryCache.get('blogs')
+  console.log('blogs', blogs ? true : false)
   if (!blogs) {
     const blogsData = await axios.get(`${apiUrl}/blogs`, { headers: { Authorization: `Bearer ${apiToken}` } })
-    await memoryCache.set('blogs', blogsData.data)
-    blogs = blogsData.data
+    await memoryCache.set('blogs', blogsData.data, () => {
+      blogs = blogsData.data
+    })
   }
 
-  let navButtons = await memoryCache.get('navButtons')
-  if (!navButtons) {
+  const navRes = await axios.get(`${apiUrl}/main-menu`, { headers: { Authorization: `Bearer ${apiToken}` } })
+  const navButtons = navRes.data.MenuItemMain
+
+  let navs = await memoryCache.get('navs')
+  console.log('first', navs)
+  if (!navs) {
     const navRes = await axios.get(`${apiUrl}/main-menu`, { headers: { Authorization: `Bearer ${apiToken}` } })
-    await memoryCache.set('navButtons', navRes.data.MenuItemMain)
-    navButtons = navRes.data.MenuItemMain
+    await memoryCache.set('navs', navRes.data.MenuItemMain, () => {
+      console.log('ran inside')
+      navs = navRes.data.MenuItemMain
+    })
   }
 
+  console.log('navs', navs)
   return {
     props: {
       ...blogs.find(blog => blog.Slug === params.slug),
