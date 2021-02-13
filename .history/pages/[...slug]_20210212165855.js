@@ -40,7 +40,7 @@ export async function getStaticPaths () {
   const paths = getPaths(pages).filter(page => page !== '/home')
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 // This also gets called at build time. Receives the paths from the above functions and passes the information down to the page
