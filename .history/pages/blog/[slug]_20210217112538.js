@@ -7,7 +7,6 @@ import { apiUrl, apiToken } from 'config/constants'
 const PublicationHeader = dynamic(() => import('components/Shared/PublicationHeader'))
 const PublicationContent = dynamic(() => import('components/Shared/PublicationContent'))
 const FallbackController = dynamic(() => import('components/Shared/FallbackController'))
-const SocialShareWidget = dynamic(() => import('components/Shared/SocialShareWidget'))
 
 const memoryCache = cacheManager.caching({ store: 'memory', max: 10000, ttl: 300 })
 
@@ -16,7 +15,6 @@ const slug = ({ Pathname, Title, Publisher, created_at, Content, Thumbnail, Thum
   return (
     <div>
       <FallbackController>
-        <SocialShareWidget />
         <PublicationHeader
           Title={Title}
           Author={Publisher}

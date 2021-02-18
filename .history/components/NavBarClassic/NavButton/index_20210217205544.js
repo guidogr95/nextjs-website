@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 // Utils
 import Link from 'next/link'
-import getPaths from 'utils/getPaths'
 // Assets
 import { FiChevronDown } from 'react-icons/fi'
 import { RiArrowDropRightFill } from 'react-icons/ri'
@@ -9,10 +8,12 @@ import { RiArrowDropRightFill } from 'react-icons/ri'
 import { colors } from 'styles/theme'
 // Constants
 import { host, prodHost } from 'config/constants'
+import getPaths from 'utils/getPaths'
 
 const NavButton = ({ slug, label, submenu, index, linkType }) => {
 
     useEffect(() => {
+        const navbar = document.getElementById('navbar')
         const dropdown = document.getElementById(`dropdown${index + 1}`)
         const navItem = document.getElementById(`navItem${index + 1}`)
 
@@ -48,7 +49,7 @@ const NavButton = ({ slug, label, submenu, index, linkType }) => {
                                 <ul key={index} >
                                     {item.Label && <div className="submenu-label" >{item.Label}</div>}
                                     {item.SubMenuItem.map((subItem, i) => {
-                                        const fullSlug = subItem.LinkType === 'Custom' ? subItem?.CustomLink || '/' : Object.keys(subItem?.Page || {}).length === 0 ? '/' : getPaths(subItem.Page, true)
+                                        const fullSlug = Object.keys(subItem?.Page || {}).length === 0 ? '/' : getPaths(subItem.Page, true)
                                         return (
                                             <li key={i} >
                                                 <Link prefetch={false} href={`${fullSlug || '/'}`} >

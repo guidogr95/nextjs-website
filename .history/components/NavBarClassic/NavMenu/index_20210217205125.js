@@ -7,6 +7,7 @@ const NavMenu = ({ navButtons }) => {
         <>
             <ul className="cool" id="navbar">
                 {navButtons && navButtons.map((button, index) => {
+                    console.log(button)
                     const fullSlug = button.LinkType === 'Custom' ? button?.CustomLink || '/' : button?.Page ? getPaths(button?.Page, true) : '/'
                     return (
                         <NavButton
@@ -15,7 +16,6 @@ const NavMenu = ({ navButtons }) => {
                             label={button.Label}
                             submenu={button?.NavSubmenu}
                             index={index}
-                            linkType={button.LinkType}
                         />
                     )
                 })}

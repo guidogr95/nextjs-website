@@ -15,7 +15,6 @@ const NavMenu = ({ navButtons }) => {
                             label={button.Label}
                             submenu={button?.NavSubmenu}
                             index={index}
-                            linkType={button.LinkType}
                         />
                     )
                 })}

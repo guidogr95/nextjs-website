@@ -25,7 +25,7 @@ const NavBar = ({ navButtons }) => {
                                 <span>Status</span>
                             </a>
                         </div>
-                        <div className="sec-item signup" >
+                        <div className="sec-item" >
                             <a href="https://secure.vexxhost.com/billing/register.php?flow=cloudconsole" rel="noopener noreferer" >
                                 <FaUserPlus />
                                 <span>Sign Up</span>
@@ -77,12 +77,8 @@ const NavBar = ({ navButtons }) => {
                     letter-spacing: 0.01em;
                 }
                 .sec-item :global(svg) {
-                    margin-right: 12px;
+                    margin-right: 8px;
                     font-size: 0.9em;
-                }
-                .sec-item.signup :global(svg) {
-                    margin-right: 12px;
-                    font-size: 1.1em;
                 }
                 .navContainer {
                     display: flex;

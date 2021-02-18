@@ -82,7 +82,7 @@ const NavBar = ({ navButtons }) => {
                 }
                 .sec-item.signup :global(svg) {
                     margin-right: 12px;
-                    font-size: 1.1em;
+                    font-size: 1em;
                 }
                 .navContainer {
                     display: flex;

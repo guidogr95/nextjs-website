@@ -21,7 +21,7 @@ const FooterWidgets = ({ navItems, address }) => {
                                         <h4>{navItem.Label}</h4>
                                         <ul>
                                             {navItem.FooterNavSubItem.map(subItem => {
-                                                const fullSlug = subItem.Link === 'Custom' ? subItem?.Url || '/' : subItem?.Page ? getPaths(subItem?.Page, true) : '/'
+                                                const fullSlug = subItem.Link === 'Custom' ? subItem?.CustomLink || '/' : subItem?.Page ? getPaths(subItem?.Page, true) : '/'
                                                 return (
                                                     <li key={subItem.Label} >
                                                         <Link href={fullSlug} >

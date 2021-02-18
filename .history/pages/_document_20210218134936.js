@@ -17,8 +17,6 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-602eaf5bd31224bd"></script>
-
         </body>
       </Html>
     )

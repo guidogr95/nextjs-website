@@ -1,12 +1,12 @@
 // Utils
 import Link from 'next/link'
-import getPaths from 'utils/getPaths'
 // Assets
 import Logo from 'public/assets/media/brand/std-horizontal-color.svg'
 // Components
 import SearchBox from 'components/Shared/Footer/SearchBox'
 
 const FooterWidgets = ({ navItems, address }) => {
+    console.log(address)
     return (
         <>
             <main>
@@ -21,10 +21,9 @@ const FooterWidgets = ({ navItems, address }) => {
                                         <h4>{navItem.Label}</h4>
                                         <ul>
                                             {navItem.FooterNavSubItem.map(subItem => {
-                                                const fullSlug = subItem.Link === 'Custom' ? subItem?.Url || '/' : subItem?.Page ? getPaths(subItem?.Page, true) : '/'
                                                 return (
                                                     <li key={subItem.Label} >
-                                                        <Link href={fullSlug} >
+                                                        <Link href={subItem.Url} >
                                                             <a>
                                                                 {subItem.Label}
                                                             </a>

@@ -48,7 +48,7 @@ const NavButton = ({ slug, label, submenu, index, linkType }) => {
                                 <ul key={index} >
                                     {item.Label && <div className="submenu-label" >{item.Label}</div>}
                                     {item.SubMenuItem.map((subItem, i) => {
-                                        const fullSlug = subItem.LinkType === 'Custom' ? subItem?.CustomLink || '/' : Object.keys(subItem?.Page || {}).length === 0 ? '/' : getPaths(subItem.Page, true)
+                                        const fullSlug = Object.keys(subItem?.Page || {}).length === 0 ? '/' : getPaths(subItem.Page, true)
                                         return (
                                             <li key={i} >
                                                 <Link prefetch={false} href={`${fullSlug || '/'}`} >

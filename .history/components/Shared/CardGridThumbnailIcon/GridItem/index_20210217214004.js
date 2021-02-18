@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { borderRadius, colors, fonts } from 'styles/theme'
 // Utils
 import getPaths from 'utils/getPaths'
+import Button from 'react-bootstrap/Button'
 // Constants
 import { apiUrl } from 'config/constants'
 // Context
@@ -10,7 +11,7 @@ import { useSpringUtils } from 'context/springContext'
 import useOnScreen from 'utils/useOnScreen'
 import Link from 'next/link'
 
-const GridItem = React.memo(({ Page, Thumbnail, Title, index, LinkType, CustomLink }) => {
+const GridItem = React.memo(({ Page, Thumbnail, Title, index }) => {
 
     const ref = useRef()
     const [showImg, setShowImg] = useState(false)
@@ -38,14 +39,12 @@ const GridItem = React.memo(({ Page, Thumbnail, Title, index, LinkType, CustomLi
 
     const Img = (props) => <animated.img style={props} alt={`${Title} icon`} src={thumbnail} />
 
-    const fullSlug = LinkType === 'Custom' ? CustomLink || '/' : Page ? getPaths(Page, true) : '/'
-
     return (
         <>
             <article className={gridLayouts[index + 1]} ref={ref} >
                     <div className="body" >
                         <span>{Title}</span>
-                        <Link href={fullSlug} >
+                        <Link href="/" >
                             <a
                                 className="btn btn-light"
                             >
